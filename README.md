@@ -1,7 +1,8 @@
 # PID VISUALIZATION
 
-Simulation of altitude control for drones
-Made by Benito Ullas
+Simulation of altitude control for drones.
+
+Made by Benito Ullas.
 
 ## Modules Required
 
