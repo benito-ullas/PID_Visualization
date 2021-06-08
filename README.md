@@ -17,3 +17,8 @@ pip install pygame
 pip install matplotlib
 ```
 
+## How to Use
+- run the file sketch.py
+- To quit visualization either close the pygame window or press 'x' on keyboard.
+- After closing the pygame window a new image '2.png' will be create in the folder which is the graph.
+
