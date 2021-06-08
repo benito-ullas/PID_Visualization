@@ -105,10 +105,11 @@ def setup():
         
 def draw():
         global d,screen,y_pos,kp,ki,kd
+        setp = scr_height/2
         
         screen.fill((51,51,51))
         d.add_g()
-        d.pid_controller(vector2D(scr_width/2,scr_height/2),kp,ki,kd)
+        d.pid_controller(vector2D(scr_width/2,setp),kp,ki,kd)
         #print(f"{d.pos.x} : {d.pos.y}")
         
         #for ploting graph 
@@ -117,7 +118,7 @@ def draw():
         d.update()
         d.edges()
         d.show()
-        pygame.draw.line(screen,(0,255,0),[0,scr_height/2],[scr_width,scr_height/2])
+        pygame.draw.line(screen,(0,255,0),[0,setp],[scr_width,setp])
         
 
         pygame.display.flip()
