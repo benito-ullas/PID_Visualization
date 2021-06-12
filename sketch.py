@@ -13,15 +13,15 @@ fps = 60
 fpsClock = pygame.time.Clock()
 
 screen = None
-scr_width = 600
-scr_height = 400
+scr_width = 800
+scr_height = 500
 
 d = None
 
 # comments below are values u can try out
-kp = 0.5 #0.07 : 5
-ki = 0  #0.6 : 1.01
-kd = 0    #8 : 60
+kp = 0.995          #       0.07   | 5
+ki =  0.79         #       0.6    | 1.01
+kd =  35        #       8      | 60
 
 
 ################################################
@@ -36,6 +36,7 @@ class Drone:
                 self.integral = vector2D(0,0) 
                 self.prev_error = vector2D(0,0)
                 self.dt = 50
+                self.maxforce = 5
         def update(self):
                 #self.acc.mult(self.dt)
                 self.vel.add(self.acc)
@@ -87,6 +88,7 @@ class Drone:
                 steering = vector2D(0,0)
                 steering.subtract(u_t,self.vel)
                 steering.div(self.dt)
+                steering.limit(self.maxforce)
                 self.acc.add(steering)
                 
                 
@@ -110,8 +112,7 @@ def draw():
         screen.fill((51,51,51))
         d.add_g()
         d.pid_controller(vector2D(scr_width/2,setp),kp,ki,kd)
-        #print(f"{d.pos.x} : {d.pos.y}")
-        
+                
         #for ploting graph 
         y_pos.append(scr_height - d.pos.y)
         
@@ -140,7 +141,7 @@ while running:
         fpsClock.tick(fps)
 t1_pos = []
 for i in range(t):
-        t1_pos.append(200)
+        t1_pos.append(250)
          
 plt.plot(t_pos,y_pos)
 
